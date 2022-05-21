@@ -1,4 +1,4 @@
-# fs-vue-fe-bwa
+# Learn FrontEnd VueJs BWA
 
 ## Project setup
 ```
