@@ -9,6 +9,10 @@
         "src/*"
       ]
     },
+    "declaration": true,
+    "noImplicitAny": false,
+    "allowJs": true,
+    "jsx": "preserve",
     "lib": [
       "esnext",
       "dom",
