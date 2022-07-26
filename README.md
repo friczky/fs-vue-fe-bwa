@@ -1,6 +1,6 @@
 # Learn FrontEnd VueJs BWA
 
-## Project setup1
+## Project setup
 ```
 npm install
 ```
