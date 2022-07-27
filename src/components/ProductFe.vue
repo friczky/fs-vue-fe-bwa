@@ -211,7 +211,7 @@ export default {
             } catch(e){
                 localStorage.removeItem('keranjangUser');
             }
-            }
+        }
 
         axios
         .get("https://bwa-be.akademi.my.id/api/products",{
