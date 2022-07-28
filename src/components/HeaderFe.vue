@@ -59,10 +59,10 @@
                                     </div>
                                     <div class="select-total">
                                         <span>total:</span>
-                                        <h5>$120.00</h5>
+                                        <h5>Rp.{{ formatPrice(totalHarga) }}</h5>
                                     </div>
                                     <div class="select-button">
-                                        <a href="#" class="primary-btn view-card">VIEW CARD</a>
+                                        <router-link to="/shoppingcart"  class="primary-btn view-card">VIEW CARD</router-link>
                                         <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
                                     </div>
                                 </div>
@@ -89,6 +89,10 @@
                 this.keranjangUser.splice(index,1);
                 const parsed = JSON.stringify(this.keranjangUser);
                 localStorage.setItem('keranjangUser', parsed);
+            },
+            formatPrice(value) {
+            let val = (value/1).toFixed().replace('.', ',')
+            return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
             }
         },  
         mounted(){
@@ -98,6 +102,15 @@
             } catch(e){
                 localStorage.removeItem('keranjangUser');
             }
+            }
+        },
+        computed: {
+            totalHarga(){
+                let total = 0;
+                for (let i = 0; i < this.keranjangUser.length; i++) {
+                    total += this.keranjangUser[i].price;
+                }
+                return total;
             }
         }
     

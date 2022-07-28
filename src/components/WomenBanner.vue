@@ -11,9 +11,11 @@
                                 <img v-bind:src="itemProduct.galleries[0].photo" alt="" />
                                 <ul>
                                     <li @click="saveKeranjang(itemProduct.id , itemProduct.name ,  itemProduct.price,  itemProduct.galleries[0].photo)" class="w-icon active">
-                                        <a href="#">
+                                        <!-- <router-link to="/shoppingcart" > -->
+                                        <router-link to="/">
                                             <i class="icon_bag_alt"></i>
-                                        </a>
+                                        </router-link>
+                                        <!-- </router-link> -->
                                     </li>
                                     <li class="quick-view"><router-link v-bind:to="'/product/'+itemProduct.id">+ Quick View</router-link></li>
                                 </ul>
@@ -53,7 +55,8 @@ export default {
 
     data(){
         return{
-            products: []
+            products: [],
+            keranjangUser: []
         };
     },
     methods:{
