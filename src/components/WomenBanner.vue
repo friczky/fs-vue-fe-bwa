@@ -12,9 +12,9 @@
                                 <ul>
                                     <li @click="saveKeranjang(itemProduct.id , itemProduct.name ,  itemProduct.price,  itemProduct.galleries[0].photo)" class="w-icon active">
                                         <!-- <router-link to="/shoppingcart" > -->
-                                        <router-link to="/">
+                                       <a href="#">
                                             <i class="icon_bag_alt"></i>
-                                        </router-link>
+                                        </a>
                                         <!-- </router-link> -->
                                     </li>
                                     <li class="quick-view"><router-link v-bind:to="'/product/'+itemProduct.id">+ Quick View</router-link></li>
@@ -22,7 +22,7 @@
                             </div>
                             <div class="pi-text">
                                 <div class="catagory-name">{{ itemProduct.type }}</div>
-                                <router-link to="/product?=1">
+                                <router-link v-bind:to="'/product/'+itemProduct.id">
                                     <h5>{{ itemProduct.name }}</h5>
                                 </router-link>
                                 <div class="product-price">
@@ -40,7 +40,7 @@
             </div>
         </div>
     </section>
-    <!-- Women Banner Section End -->
+    <!--  Women Banner Section End -->
 
 </template>
 
@@ -72,15 +72,25 @@ export default {
             this.keranjangUser.push(productStored);
             const parsed =JSON.stringify(this.keranjangUser);
             localStorage.setItem('keranjangUser',parsed);
+
+            window.location.reload();
         },
     },
     mounted(){
         axios
         .get("https://bwa-be.akademi.my.id/api/products")
         .then(res => {
-            this.products = res.data.data.data;
+            this.products = res.data.data.data ;
              // console.log(res.data.data.data);
-        })
+        });
+
+        if(localStorage.getItem('keranjangUser')){
+            try{
+                this.keranjangUser = JSON.parse(localStorage.getItem('keranjangUser'));
+            } catch(e){
+                localStorage.removeItem('keranjangUser');
+            }
+        }
     }
     
 }
