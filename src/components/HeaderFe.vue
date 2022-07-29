@@ -89,7 +89,9 @@
                 this.keranjangUser.splice(index,1);
                 const parsed = JSON.stringify(this.keranjangUser);
                 localStorage.setItem('keranjangUser', parsed);
+                window.location.reload();
             },
+
             formatPrice(value) {
             let val = (value/1).toFixed().replace('.', ',')
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
